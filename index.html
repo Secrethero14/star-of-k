@@ -13,7 +13,6 @@
     :root {
       --brand: 242 85% 58%;
       --ink: 223 20% 16%;
-      --muted: 223 14% 34%;
       --card: 0 0% 100%;
       --bg: 230 60% 98%;
       --accent: 203 92% 75%;
@@ -23,59 +22,28 @@
     body {
       font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
       color: hsl(var(--ink));
-      background: radial-gradient(1000px 600px at 90% -10%, hsl(var(--accent)/0.25), transparent 60%), 
+      background: radial-gradient(1000px 600px at 90% -10%, hsl(var(--accent)/0.25), transparent 60%),
                   radial-gradient(900px 500px at -10% 10%, hsl(var(--brand)/0.25), transparent 60%),
                   hsl(var(--bg));
     }
-    .glass {
-      backdrop-filter: blur(10px);
-      background: hsl(0 0% 100% / 0.65);
-    }
-    .brand-gradient {
-      background-image: linear-gradient(135deg, hsl(var(--brand)), #f97316 40%, #22d3ee);
-    }
-    .ring-focus:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px hsl(var(--accent)/0.45);
-    }
-    .pill {
-      background: hsl(var(--pill));
-      border: 1px solid hsl(223 20% 90%);
-    }
-    .shadow-soft {
-      box-shadow: 0 5px 30px hsl(223 40% 40% / 0.12);
-    }
-    .shadow-card {
-      box-shadow: 0 10px 30px hsl(223 40% 20% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.7);
-    }
-    .fade-in { animation: fade 0.35s ease both; }
-    @keyframes fade { from {opacity: 0; transform: translateY(6px);} to {opacity: 1; transform: translateY(0);} }
+    .glass { backdrop-filter: blur(10px); background: hsl(0 0% 100% / 0.65); }
+    .brand-gradient { background-image: linear-gradient(135deg, hsl(var(--brand)), #f97316 40%, #22d3ee); }
+    .ring-focus:focus { outline: none; box-shadow: 0 0 0 4px hsl(var(--accent)/0.45); }
+    .pill { background: hsl(var(--pill)); border: 1px solid hsl(223 20% 90%); }
+    .shadow-soft { box-shadow: 0 5px 30px hsl(223 40% 40% / 0.12); }
+    .shadow-card { box-shadow: 0 10px 30px hsl(223 40% 20% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.7); }
+    .fade-in { animation: fade .35s ease both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
     .grid-auto-fill { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-    .tag {
-      transition: transform .08s ease, background-color .2s ease;
-    }
+    .tag { transition: transform .08s ease, background-color .2s ease; }
     .tag:active { transform: scale(0.98); }
-    .chip-selected {
-      background: hsl(var(--brand)/0.08);
-      color: hsl(var(--brand));
-      border-color: hsl(var(--brand)/0.4);
-    }
-    .divider {
-      background: linear-gradient(90deg, transparent, hsl(223 20% 90%), transparent);
-      height: 1px;
-    }
+    .chip-selected { background: hsl(var(--brand)/0.08); color: hsl(var(--brand)); border-color: hsl(var(--brand)/0.4); }
+    .divider { background: linear-gradient(90deg, transparent, hsl(223 20% 90%), transparent); height: 1px; }
     .tooltip { position: relative; }
     .tooltip:hover::after {
       content: attr(data-tip);
-      position: absolute;
-      top: -36px;
-      right: 0;
-      white-space: nowrap;
-      background: hsl(223 20% 10%);
-      color: white;
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 8px;
+      position: absolute; top: -36px; right: 0; white-space: nowrap;
+      background: hsl(223 20% 10%); color: white; padding: 6px 10px; font-size: 12px; border-radius: 8px;
       box-shadow: 0 10px 20px hsl(223 40% 10% / 0.25);
     }
   </style>
@@ -91,9 +59,7 @@
             <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
             Kurigram District — 9 Upazilas
           </div>
-          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
-            Kurigramians Star
-          </h1>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">Kurigramians Star</h1>
           <p class="mt-3 md:mt-4 text-slate-600 md:text-lg max-w-2xl">
             Celebrate the achievements of the people of Kurigram. Submit your success and discover achievers from all 9 upazilas.
           </p>
@@ -114,7 +80,7 @@
           </div>
         </div>
         <div class="flex-1">
-          <!-- Decorative / Upazila ring -->
+          <!-- Upazila quick filter pills -->
           <div class="relative rounded-3xl p-6 md:p-8 glass shadow-soft overflow-hidden">
             <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full brand-gradient opacity-30 blur-2xl"></div>
             <div class="relative">
@@ -174,8 +140,6 @@
       </div>
 
       <div class="divider my-6"></div>
-
-      <!-- Active chips -->
       <div id="activeChips" class="flex flex-wrap gap-2"></div>
     </section>
 
@@ -209,14 +173,14 @@
     </section>
   </main>
 
-  <!-- Modal: Submit Achiever -->
+  <!-- Modal: Add/Edit Achiever -->
   <div id="formModal" class="fixed inset-0 hidden items-center justify-center z-50">
     <div class="absolute inset-0 bg-slate-900/50"></div>
     <div class="relative w-full max-w-2xl mx-4">
       <div class="bg-white rounded-3xl shadow-card border border-slate-100 overflow-hidden">
         <div class="px-6 py-5 flex items-start justify-between">
           <div>
-            <h3 class="text-xl font-extrabold">Submit an Achiever</h3>
+            <h3 id="formTitle" class="text-xl font-extrabold">Submit an Achiever</h3>
             <p class="text-slate-600 text-sm mt-1">Share success to inspire Kurigram.</p>
           </div>
           <button id="closeFormBtn" class="p-2 rounded-lg hover:bg-slate-50 text-slate-500 ring-focus" aria-label="Close">
@@ -225,6 +189,7 @@
         </div>
         <div class="divider"></div>
         <form id="achieverForm" class="px-6 py-6 space-y-5">
+          <input type="hidden" id="fId">
           <div class="grid md:grid-cols-2 gap-5">
             <div>
               <label class="block text-sm font-semibold mb-2">Full Name<span class="text-red-500">*</span></label>
@@ -268,7 +233,7 @@
             <div class="text-xs text-slate-500">Fields marked * are required</div>
             <div class="flex gap-3">
               <button type="button" id="cancelFormBtn" class="px-4 py-2 rounded-xl font-semibold text-slate-700 bg-white hover:bg-slate-50 shadow-soft ring-focus">Cancel</button>
-              <button type="submit" class="px-5 py-2.5 rounded-xl font-semibold text-white brand-gradient hover:opacity-95 ring-focus">Add Achiever</button>
+              <button id="submitBtn" type="submit" class="px-5 py-2.5 rounded-xl font-semibold text-white brand-gradient hover:opacity-95 ring-focus">Add Achiever</button>
             </div>
           </div>
         </form>
@@ -296,12 +261,13 @@
   </footer>
 
   <script>
-    // Data and state
+    // Upazilas
     const UPAZILAS = [
       "Kurigram Sadar","Rajarhat","Chilmari","Ulipur","Nageshwari",
       "Char Rajibpur","Bhurungamari","Phulbari","Rowmari"
     ];
 
+    // Elements
     const els = {
       upazilaFilter: document.getElementById("upazilaFilter"),
       searchInput: document.getElementById("searchInput"),
@@ -313,13 +279,19 @@
       statTotal: document.getElementById("statTotal"),
       statUpazilas: document.getElementById("statUpazilas"),
       statRecent: document.getElementById("statRecent"),
+
       openFormBtn: document.getElementById("openFormBtn"),
       openFormBtn2: document.getElementById("openFormBtn2"),
       emptyAddBtn: document.getElementById("emptyAddBtn"),
+
       formModal: document.getElementById("formModal"),
       closeFormBtn: document.getElementById("closeFormBtn"),
       cancelFormBtn: document.getElementById("cancelFormBtn"),
       achieverForm: document.getElementById("achieverForm"),
+      formTitle: document.getElementById("formTitle"),
+      submitBtn: document.getElementById("submitBtn"),
+
+      fId: document.getElementById("fId"),
       fName: document.getElementById("fName"),
       fUpazila: document.getElementById("fUpazila"),
       fJobType: document.getElementById("fJobType"),
@@ -327,58 +299,69 @@
       fOrg: document.getElementById("fOrg"),
       fYear: document.getElementById("fYear"),
       fContact: document.getElementById("fContact"),
+
       toast: document.getElementById("toast"),
       year: document.getElementById("year"),
+
       exportBtn: document.getElementById("exportBtn"),
       importBtn: document.getElementById("importBtn"),
       importFile: document.getElementById("importFile"),
     };
 
-    // Seed sample data (small as default)
+    // Sample data (small)
     const SAMPLE = [
-      { id: cryptoRandomId(), name: "Ayesha Rahman", upazila: "Kurigram Sadar", jobType: "BCS Cadre (Admin)", jobLocation: "Dhaka", org: "Bangladesh Administrative Service", year: 2023, contact: "ayesha@example.com", createdAt: Date.now()-1000*60*60*24*5 },
-      { id: cryptoRandomId(), name: "Mizanur Islam", upazila: "Ulipur", jobType: "Govt Primary Teacher", jobLocation: "Ulipur", org: "DPE", year: 2022, contact: "017XXXXXXXX", createdAt: Date.now()-1000*60*60*24*20 },
-      { id: cryptoRandomId(), name: "Sharmin Akter", upazila: "Nageshwari", jobType: "BCS Health", jobLocation: "Rangpur", org: "DGHS", year: 2024, contact: "sharmin@health.gov.bd", createdAt: Date.now()-1000*60*60*24*1 },
-      { id: cryptoRandomId(), name: "Jahid Hasan", upazila: "Chilmari", jobType: "SO, Govt Bank", jobLocation: "Kurigram", org: "Sonali Bank", year: 2021, contact: "jahid.bank@example.com", createdAt: Date.now()-1000*60*60*24*40 },
-      { id: cryptoRandomId(), name: "Farzana Sultana", upazila: "Bhurungamari", jobType: "Lecturer", jobLocation: "Dinajpur", org: "Govt College", year: 2023, contact: "farzana.edu@example.com", createdAt: Date.now()-1000*60*60*24*12 },
-      { id: cryptoRandomId(), name: "Rakibul Islam", upazila: "Rowmari", jobType: "Engineer (PWD)", jobLocation: "Kurigram Sadar", org: "Public Works", year: 2022, contact: "rakib.pwd@example.com", createdAt: Date.now()-1000*60*60*24*3 },
+      { id: uid(), name: "Ayesha Rahman", upazila: "Kurigram Sadar", jobType: "BCS Cadre (Admin)", jobLocation: "Dhaka", org: "Bangladesh Administrative Service", year: 2023, contact: "ayesha@example.com", createdAt: Date.now()-1000*60*60*24*5 },
+      { id: uid(), name: "Mizanur Islam", upazila: "Ulipur", jobType: "Govt Primary Teacher", jobLocation: "Ulipur", org: "DPE", year: 2022, contact: "017XXXXXXXX", createdAt: Date.now()-1000*60*60*24*20 },
+      { id: uid(), name: "Sharmin Akter", upazila: "Nageshwari", jobType: "BCS Health", jobLocation: "Rangpur", org: "DGHS", year: 2024, contact: "sharmin@health.gov.bd", createdAt: Date.now()-1000*60*60*24*1 },
     ];
 
-    function cryptoRandomId() {
+    function uid() {
       return "id-" + Math.random().toString(36).slice(2, 8) + "-" + Date.now().toString(36).slice(-4);
     }
 
-    const STORAGE_KEY = "kurigramians_star_v1";
+    const STORAGE_KEY = "kurigramians_star_v2";
     let achievers = [];
+    let editingId = null;
 
     function loadData() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        try {
-          const parsed = JSON.parse(raw);
-          achievers = Array.isArray(parsed) ? parsed : [];
-        } catch { achievers = []; }
+        try { achievers = JSON.parse(raw) || []; } catch { achievers = []; }
       }
-      if (!achievers.length) {
-        achievers = SAMPLE;
-        saveData();
-      }
+      if (!achievers.length) { achievers = SAMPLE; saveData(); }
     }
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(achievers));
-    }
+    function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(achievers)); }
 
-    // UI helpers
-    function openModal() {
+    // Modal helpers
+    function openModal(mode="add", data=null) {
       els.formModal.classList.remove("hidden");
       els.formModal.classList.add("flex");
-      els.fUpazila.value = els.upazilaFilter.value || "";
-      setTimeout(() => els.fName.focus(), 10);
+      if (mode === "edit" && data) {
+        editingId = data.id;
+        els.formTitle.textContent = "Edit Achiever";
+        els.submitBtn.textContent = "Save Changes";
+        els.fId.value = data.id;
+        els.fName.value = data.name;
+        els.fUpazila.value = data.upazila;
+        els.fJobType.value = data.jobType;
+        els.fJobLocation.value = data.jobLocation;
+        els.fOrg.value = data.org || "";
+        els.fYear.value = data.year || "";
+        els.fContact.value = data.contact;
+      } else {
+        editingId = null;
+        els.formTitle.textContent = "Submit an Achiever";
+        els.submitBtn.textContent = "Add Achiever";
+        els.achieverForm.reset();
+        els.fUpazila.value = els.upazilaFilter.value || "";
+      }
+      setTimeout(()=> els.fName.focus(), 10);
     }
     function closeModal() {
       els.formModal.classList.add("hidden");
       els.formModal.classList.remove("flex");
       els.achieverForm.reset();
+      editingId = null;
     }
     function toast(msg="Done!") {
       els.toast.firstElementChild.textContent = msg;
@@ -387,61 +370,45 @@
     }
 
     // Populate selects
-    function populateUpazilaSelects() {
-      UPAZILAS.forEach(u => {
+    function fillUpazilaSelects() {
+      UPAZILAS.forEach(u=>{
         const o = document.createElement("option");
         o.value = u; o.textContent = u;
         els.upazilaFilter.appendChild(o);
       });
-      UPAZILAS.forEach(u => {
+      UPAZILAS.forEach(u=>{
         const o = document.createElement("option");
         o.value = u; o.textContent = u;
         els.fUpazila.appendChild(o);
       });
     }
 
-    // Filtering & sorting
-    const state = {
-      query: "",
-      upazila: "",
-      sort: "newest",
-      tagUpazilas: new Set(),
-    };
-
+    // State
+    const state = { query:"", upazila:"", sort:"newest", tagUpazilas:new Set() };
     function getActiveUpazilaFilter() {
       if (state.tagUpazilas.size) return Array.from(state.tagUpazilas);
       return state.upazila ? [state.upazila] : [];
     }
-
     function filterAndSort() {
       const q = state.query.trim().toLowerCase();
-      const upa = getActiveUpazilaFilter();
-      let list = achievers.filter(a => {
-        const matchQ = !q || [a.name, a.jobType, a.jobLocation, a.org || "", a.upazila].join(" ").toLowerCase().includes(q);
-        const matchU = !upa.length || upa.includes(a.upazila);
+      const up = getActiveUpazilaFilter();
+      let list = achievers.filter(a=>{
+        const matchQ = !q || [a.name, a.jobType, a.jobLocation, a.org||"", a.upazila].join(" ").toLowerCase().includes(q);
+        const matchU = !up.length || up.includes(a.upazila);
         return matchQ && matchU;
       });
-      if (state.sort === "newest") {
-        list.sort((a,b)=> (b.createdAt||0) - (a.createdAt||0));
-      } else if (state.sort === "name") {
-        list.sort((a,b)=> a.name.localeCompare(b.name));
-      } else if (state.sort === "upazila") {
-        list.sort((a,b)=> a.upazila.localeCompare(b.upazila) || a.name.localeCompare(b.name));
-      }
+      if (state.sort === "newest") list.sort((a,b)=> (b.createdAt||0) - (a.createdAt||0));
+      if (state.sort === "name") list.sort((a,b)=> a.name.localeCompare(b.name));
+      if (state.sort === "upazila") list.sort((a,b)=> a.upazila.localeCompare(b.upazila) || a.name.localeCompare(b.name));
       return list;
     }
 
-    // Render chips and stats
+    // Chips + Stats
     function renderChips() {
       els.activeChips.innerHTML = "";
-
-      if (state.query) addChip(`Search: “${state.query}”`, () => { state.query=""; els.searchInput.value=""; renderAll(); });
-
-      if (!state.tagUpazilas.size && state.upazila) {
-        addChip(state.upazila, () => { state.upazila=""; els.upazilaFilter.value=""; renderAll(); });
-      }
-
-      state.tagUpazilas.forEach(u => addChip(u, () => { state.tagUpazilas.delete(u); setHeaderPill(u,false); renderAll(); }));
+      if (state.query) addChip(`Search: “${state.query}”`, ()=>{ state.query=""; els.searchInput.value=""; renderAll(); });
+      if (!state.tagUpazilas.size && state.upazila) addChip(state.upazila, ()=>{ state.upazila=""; els.upazilaFilter.value=""; renderAll(); });
+      state.tagUpazilas.forEach(u=> addChip(u, ()=>{ state.tagUpazilas.delete(u); setHeaderPill(u,false); renderAll(); }));
 
       if (!state.query && !state.upazila && !state.tagUpazilas.size) {
         const hint = document.createElement("div");
@@ -453,39 +420,30 @@
       function addChip(text, onRemove) {
         const chip = document.createElement("div");
         chip.className = "flex items-center gap-2 pill px-3 py-1.5 text-sm";
-        const t = document.createElement("span");
-        t.textContent = text;
-        const b = document.createElement("button");
-        b.className = "p-1 rounded-md hover:bg-slate-100";
-        b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-        b.addEventListener("click", onRemove);
-        chip.appendChild(t); chip.appendChild(b);
+        chip.innerHTML = `<span>${text}</span>
+          <button class="p-1 rounded-md hover:bg-slate-100" aria-label="Remove">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>`;
+        chip.querySelector("button").addEventListener("click", onRemove);
         els.activeChips.appendChild(chip);
       }
     }
-
     function renderStats(list) {
       els.statTotal.textContent = achievers.length.toString();
       els.statUpazilas.textContent = new Set(achievers.map(a=>a.upazila)).size.toString();
       if (list.length) {
         const recent = list.slice().sort((a,b)=> (b.createdAt||0)-(a.createdAt||0))[0];
-        const d = new Date(recent.createdAt || Date.now());
-        els.statRecent.textContent = `${recent.name} — ${d.toLocaleDateString()}`;
-      } else {
-        els.statRecent.textContent = "—";
-      }
+        els.statRecent.textContent = `${recent.name} — ${new Date(recent.createdAt||Date.now()).toLocaleDateString()}`;
+      } else els.statRecent.textContent = "—";
     }
 
-    // Render cards
+    // Cards
     function renderCards(list) {
       els.cardsGrid.innerHTML = "";
-      if (!list.length) {
-        els.emptyState.classList.remove("hidden");
-        return;
-      }
+      if (!list.length) { els.emptyState.classList.remove("hidden"); return; }
       els.emptyState.classList.add("hidden");
 
-      list.forEach(a => {
+      list.forEach(a=>{
         const card = document.createElement("article");
         card.className = "rounded-2xl border border-slate-100 bg-white shadow-soft p-5 fade-in hover:shadow-card transition-shadow";
         card.innerHTML = `
@@ -501,6 +459,7 @@
             </div>
             <span class="text-xs px-2 py-1 rounded-full chip-selected border">${escapeHtml(a.jobType)}</span>
           </div>
+
           <div class="mt-4 space-y-2 text-sm">
             <div class="flex items-center gap-2 text-slate-700">
               <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l7 6v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8l7-6Z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
@@ -522,29 +481,28 @@
               </button>
             </div>
           </div>
+
           <div class="mt-4 flex items-center justify-between">
             <div class="text-xs text-slate-500">Added ${new Date(a.createdAt||Date.now()).toLocaleDateString()}</div>
             <div class="flex gap-2">
               <button class="px-3 py-1.5 text-xs rounded-lg pill hover:bg-slate-50 filterUpa" data-up="${escapeHtmlAttr(a.upazila)}">View ${escapeHtml(a.upazila)}</button>
               <button class="px-3 py-1.5 text-xs rounded-lg pill hover:bg-slate-50 filterType" data-type="${escapeHtmlAttr(a.jobType)}">Similar roles</button>
+              <button class="px-3 py-1.5 text-xs rounded-lg pill bg-white hover:bg-slate-50 editBtn" data-id="${escapeHtmlAttr(a.id)}">Edit</button>
             </div>
           </div>
         `;
         els.cardsGrid.appendChild(card);
       });
 
-      els.cardsGrid.querySelectorAll("[data-copy]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const text = btn.getAttribute("data-copy");
-          copyText(text);
-          toast("Contact copied!");
-        });
+      // Wire actions
+      els.cardsGrid.querySelectorAll("[data-copy]").forEach(btn=>{
+        btn.addEventListener("click", ()=> { copyText(btn.getAttribute("data-copy")); toast("Contact copied!"); });
       });
       els.cardsGrid.querySelectorAll(".filterUpa").forEach(b=>{
         b.addEventListener("click", ()=>{
           clearTagSelection();
           const u = b.getAttribute("data-up");
-          toggleHeaderPill(u, true);
+          toggleHeaderPill(u,true);
           renderAll();
           window.location.hash = "#directory";
         });
@@ -552,71 +510,62 @@
       els.cardsGrid.querySelectorAll(".filterType").forEach(b=>{
         b.addEventListener("click", ()=>{
           const t = b.getAttribute("data-type");
-          els.searchInput.value = t;
-          state.query = t;
-          renderAll();
-          window.location.hash = "#directory";
+          els.searchInput.value = t; state.query = t; renderAll(); window.location.hash = "#directory";
+        });
+      });
+      els.cardsGrid.querySelectorAll(".editBtn").forEach(b=>{
+        b.addEventListener("click", ()=>{
+          const id = b.getAttribute("data-id");
+          const item = achievers.find(x=>x.id===id);
+          if (item) openModal("edit", item);
         });
       });
     }
 
-    // Header upazila pills multi-select
+    // Header pills behavior
     const headerPills = Array.from(document.querySelectorAll('button[data-upazila]'));
-    headerPills.forEach(btn => {
-      btn.addEventListener("click", () => {
+    headerPills.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
         const u = btn.getAttribute("data-upazila");
         const willSelect = !state.tagUpazilas.has(u);
         toggleHeaderPill(u, willSelect);
-        if (state.tagUpazilas.size) {
-          state.upazila = "";
-          els.upazilaFilter.value = "";
-        }
+        if (state.tagUpazilas.size) { state.upazila=""; els.upazilaFilter.value=""; }
         renderAll();
       });
     });
     function toggleHeaderPill(u, select) {
-      if (select) {
-        state.tagUpazilas.add(u);
-        setHeaderPill(u, true);
-      } else {
-        state.tagUpazilas.delete(u);
-        setHeaderPill(u, false);
-      }
+      if (select) { state.tagUpazilas.add(u); setHeaderPill(u,true); }
+      else { state.tagUpazilas.delete(u); setHeaderPill(u,false); }
     }
     function setHeaderPill(u, active) {
-      const btn = headerPills.find(b => b.getAttribute("data-upazila") === u);
+      const btn = headerPills.find(b=> b.getAttribute("data-upazila")===u);
       if (!btn) return;
       btn.classList.toggle("chip-selected", !!active);
       btn.classList.toggle("border", !!active);
     }
     function clearTagSelection() {
-      state.tagUpazilas.forEach(u => setHeaderPill(u, false));
+      state.tagUpazilas.forEach(u=> setHeaderPill(u,false));
       state.tagUpazilas.clear();
     }
 
-    // Event bindings - filters
-    els.searchInput.addEventListener("input", (e)=> { state.query = e.target.value; renderAll(); });
-    els.upazilaFilter.addEventListener("change", (e)=> {
-      if (state.tagUpazilas.size) {
-        e.target.value = "";
-        return;
-      }
-      state.upazila = e.target.value;
-      renderAll();
+    // Events - filters
+    els.searchInput.addEventListener("input", e=> { state.query = e.target.value; renderAll(); });
+    els.upazilaFilter.addEventListener("change", e=>{
+      if (state.tagUpazilas.size) { e.target.value=""; return; }
+      state.upazila = e.target.value; renderAll();
     });
-    els.sortSelect.addEventListener("change", (e)=> { state.sort = e.target.value; renderAll(); });
-    els.clearFilters.addEventListener("click", ()=> {
+    els.sortSelect.addEventListener("change", e=> { state.sort = e.target.value; renderAll(); });
+    els.clearFilters.addEventListener("click", ()=>{
       state.query=""; state.upazila=""; state.sort="newest"; clearTagSelection();
-      els.searchInput.value=""; els.upazilaFilter.value=""; els.sortSelect.value="newest";
-      renderAll();
+      els.searchInput.value=""; els.upazilaFilter.value=""; els.sortSelect.value="newest"; renderAll();
     });
 
-    // Modal handlers
-    [els.openFormBtn, els.openFormBtn2, els.emptyAddBtn].forEach(b => b && b.addEventListener("click", openModal));
-    [els.closeFormBtn, els.cancelFormBtn].forEach(b => b && b.addEventListener("click", closeModal));
+    // Modal events
+    [els.openFormBtn, els.openFormBtn2, els.emptyAddBtn].forEach(b=> b && b.addEventListener("click", ()=> openModal("add")));
+    [els.closeFormBtn, els.cancelFormBtn].forEach(b=> b && b.addEventListener("click", closeModal));
     els.formModal.addEventListener("click", (e)=> { if (e.target === els.formModal) closeModal(); });
 
-    // Form submit
+    // Form submit (Add/Edit)
     els.achieverForm.addEventListener("submit", (e)=>{
       e.preventDefault();
       const name = els.fName.value.trim();
@@ -628,35 +577,45 @@
       const contact = els.fContact.value.trim();
 
       if (!name || !upazila || !jobType || !jobLocation || !contact) {
-        toast("Please fill all required fields.");
-        return;
+        toast("Please fill all required fields."); return;
+      }
+      if (!UPAZILAS.includes(upazila)) {
+        toast("Please select a valid upazila."); return;
       }
 
-      const newItem = {
-        id: cryptoRandomId(),
-        name, upazila, jobType, jobLocation,
-        org: org || null,
-        year: year || null,
-        contact,
-        createdAt: Date.now()
-      };
-      achievers.push(newItem);
-      saveData();
-      closeModal();
-      toast("Achiever added successfully!");
-      els.searchInput.value = name;
-      state.query = name;
+      if (editingId) {
+        const idx = achievers.findIndex(a=>a.id===editingId);
+        if (idx > -1) {
+          achievers[idx] = {
+            ...achievers[idx],
+            name, upazila, jobType, jobLocation, org: org || null, year: year || null, contact
+          };
+        }
+        saveData();
+        closeModal();
+        toast("Changes saved!");
+      } else {
+        const newItem = {
+          id: uid(), name, upazila, jobType, jobLocation,
+          org: org || null, year: year || null, contact,
+          createdAt: Date.now()
+        };
+        achievers.push(newItem);
+        saveData();
+        closeModal();
+        toast("Achiever added!");
+        els.searchInput.value = name; state.query = name;
+      }
+
       renderAll();
       window.location.hash = "#directory";
     });
 
     // Copy helper
     function copyText(text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(()=>{});
-      } else {
-        const t = document.createElement("textarea");
-        t.value = text; document.body.appendChild(t);
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).catch(()=>{});
+      else {
+        const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
         t.select(); try { document.execCommand("copy"); } catch {}
         document.body.removeChild(t);
       }
@@ -665,160 +624,99 @@
     // CSV Export/Import
     function toCSV(rows) {
       const headers = ["id","name","upazila","jobType","jobLocation","org","year","contact","createdAt"];
-      const escape = (v) => {
-        const s = v === null || v === undefined ? "" : String(v);
-        const needsQuotes = /[",\n\r]/.test(s) || s.includes(",");
-        const q = s.replace(/"/g, '""');
-        return `"${q}"`;
-      };
-      const lines = [headers.map(h=>escape(h)).join(",")];
-      rows.forEach(r => {
-        const line = headers.map(h => escape(r[h] ?? "")).join(",");
-        lines.push(line);
-      });
-      return lines.join("\n");
+      const esc = (v)=> `"${String(v ?? "").replace(/"/g,'""')}"`;
+      const out = [headers.map(esc).join(",")];
+      rows.forEach(r=> out.push(headers.map(h=> esc(r[h])).join(",")));
+      return out.join("\n");
     }
-
     function download(filename, text) {
       const blob = new Blob([text], {type: "text/csv;charset=utf-8"});
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => {
-        URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      }, 0);
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+      setTimeout(()=> { URL.revokeObjectURL(url); document.body.removeChild(a); }, 0);
     }
-
     function parseCSV(text) {
-      // Basic CSV parser with quote handling
-      const rows = [];
-      let i = 0, field = "", row = [], inQuotes = false;
-      while (i < text.length) {
-        const char = text[i];
-        if (inQuotes) {
-          if (char === '"') {
-            if (text[i+1] === '"') { field += '"'; i += 2; continue; }
-            inQuotes = false; i++; continue;
-          } else {
-            field += char; i++; continue;
-          }
+      const rows = []; let i=0, f="", r=[], q=false;
+      while (i<text.length) {
+        const c=text[i];
+        if (q) {
+          if (c===`"`) { if (text[i+1]==='"'){ f+=`"`; i+=2; continue; } q=false; i++; continue; }
+          f+=c; i++; continue;
         } else {
-          if (char === '"') { inQuotes = true; i++; continue; }
-          if (char === ',') { row.push(field); field = ""; i++; continue; }
-          if (char === '\n') { row.push(field); rows.push(row); row = []; field = ""; i++; continue; }
-          if (char === '\r') { i++; continue; }
-          field += char; i++; continue;
+          if (c===`"`) { q=true; i++; continue; }
+          if (c===`,`) { r.push(f); f=""; i++; continue; }
+          if (c===`\n`) { r.push(f); rows.push(r); r=[]; f=""; i++; continue; }
+          if (c===`\r`) { i++; continue; }
+          f+=c; i++; continue;
         }
       }
-      // push last
-      row.push(field);
-      if (row.length > 1 || row[0] !== "") rows.push(row);
-
-      if (!rows.length) return { headers: [], data: [] };
-      const headers = rows[0].map(h => h.trim());
-      const data = rows.slice(1).filter(r => r.some(c => c && c.trim() !== "")).map(r => {
-        const obj = {};
-        headers.forEach((h, idx) => { obj[h] = r[idx] ?? ""; });
-        return obj;
+      r.push(f); if (r.length>1 || r[0]!=="") rows.push(r);
+      if (!rows.length) return { headers:[], data:[] };
+      const headers = rows[0].map(h=>h.trim());
+      const data = rows.slice(1).filter(x=> x.some(c=> (c||"").trim()!=="")).map(arr=>{
+        const o={}; headers.forEach((h,idx)=> o[h]=arr[idx] ?? ""); return o;
       });
       return { headers, data };
     }
-
-    function normalizeImportedRow(o) {
-      // Map and coerce fields; allow missing optional fields
-      const item = {
-        id: (o.id || "").toString().trim() || null,
-        name: (o.name || "").toString().trim(),
-        upazila: (o.upazila || "").toString().trim(),
-        jobType: (o.jobType || "").toString().trim(),
-        jobLocation: (o.jobLocation || "").toString().trim(),
-        org: (o.org || "").toString().trim() || null,
+    function normalizeRow(o) {
+      return {
+        id: (o.id||"").toString().trim() || null,
+        name: (o.name||"").toString().trim(),
+        upazila: (o.upazila||"").toString().trim(),
+        jobType: (o.jobType||"").toString().trim(),
+        jobLocation: (o.jobLocation||"").toString().trim(),
+        org: (o.org||"").toString().trim() || null,
         year: o.year ? Number(o.year) : null,
-        contact: (o.contact || "").toString().trim(),
+        contact: (o.contact||"").toString().trim(),
         createdAt: o.createdAt ? Number(o.createdAt) : Date.now(),
       };
-      return item;
     }
-
-    function validateItem(item) {
-      if (!item.name || !item.upazila || !item.jobType || !item.jobLocation || !item.contact) return false;
-      return true;
+    function validItem(item) {
+      return !!(item.name && item.upazila && UPAZILAS.includes(item.upazila) && item.jobType && item.jobLocation && item.contact);
     }
-
     function exportCSV() {
-      const date = new Date();
-      const stamp = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
-      const csv = toCSV(achievers);
-      download(`kurigramians-star-${stamp}.csv`, csv);
+      const d=new Date(), stamp=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+      download(`kurigramians-star-${stamp}.csv`, toCSV(achievers));
       toast("CSV exported!");
     }
-
     function importCSVFile(file) {
       const reader = new FileReader();
       reader.onload = () => {
         try {
-          const text = String(reader.result || "");
-          const { headers, data } = parseCSV(text);
-          if (!headers.length || !data.length) {
-            toast("CSV seems empty.");
-            return;
-          }
-          let added = 0, updated = 0, skipped = 0;
-
-          const byId = new Map(achievers.map(a => [a.id, a]));
-          data.forEach(row => {
-            const item = normalizeImportedRow(row);
-            if (!validateItem(item)) { skipped++; return; }
-            if (!UPAZILAS.includes(item.upazila)) {
-              // Keep it but mark skipped if invalid upazila
-              skipped++; return;
-            }
-            if (!item.id || byId.has(item.id)) {
-              // Assign new id if missing or duplicate, then add as new
-              item.id = cryptoRandomId();
-              achievers.push(item);
-              byId.set(item.id, item);
-              added++;
+          const { headers, data } = parseCSV(String(reader.result || ""));
+          if (!headers.length || !data.length) { toast("CSV seems empty."); return; }
+          const byId = new Map(achievers.map(a=>[a.id, a]));
+          let added=0, updated=0, skipped=0;
+          data.forEach(r=>{
+            const item = normalizeRow(r);
+            if (!validItem(item)) { skipped++; return; }
+            if (item.id && byId.has(item.id)) {
+              // Update existing by id
+              const idx = achievers.findIndex(a=>a.id===item.id);
+              if (idx>-1) { achievers[idx] = { ...achievers[idx], ...item }; updated++; }
             } else {
-              // New unique id → add
-              achievers.push(item);
-              byId.set(item.id, item);
-              added++;
+              item.id = item.id || uid();
+              achievers.push(item); byId.set(item.id, item); added++;
             }
           });
-
-          saveData();
-          renderAll();
+          saveData(); renderAll();
           toast(`Imported: ${added} added, ${updated} updated, ${skipped} skipped`);
-        } catch (e) {
-          console.error(e);
-          toast("Import failed. Please check your CSV.");
-        }
+        } catch(e) { console.error(e); toast("Import failed. Please check your CSV."); }
       };
       reader.onerror = () => toast("Couldn't read the file.");
       reader.readAsText(file);
     }
 
-    // Export/Import bindings
-    if (els.exportBtn) {
-      els.exportBtn.addEventListener("click", () => exportCSV());
-    }
-    if (els.importBtn && els.importFile) {
-      els.importBtn.addEventListener("click", () => els.importFile.click());
-      els.importFile.addEventListener("change", (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        importCSVFile(file);
-        // Reset input so same file can be selected again later
-        e.target.value = "";
-      });
-    }
+    // Bind export/import
+    els.exportBtn.addEventListener("click", exportCSV);
+    els.importBtn.addEventListener("click", ()=> els.importFile.click());
+    els.importFile.addEventListener("change", (e)=>{
+      const file = e.target.files?.[0]; if (!file) return;
+      importCSVFile(file); e.target.value = "";
+    });
 
-    // Render orchestrator
+    // Render all
     function renderAll() {
       const list = filterAndSort();
       renderChips();
@@ -827,40 +725,17 @@
     }
 
     // Utilities
-    function initials(name) {
-      return name.split(" ").slice(0,2).map(s=>s[0]?.toUpperCase() || "").join("");
-    }
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-    }
-    function escapeHtmlAttr(s) {
-      return escapeHtml(s).replace(/"/g, '&quot;');
-    }
+    function initials(name) { return name.split(" ").slice(0,2).map(s=>s[0]?.toUpperCase()||"").join(""); }
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function escapeHtmlAttr(s) { return escapeHtml(s).replace(/"/g,'&quot;'); }
 
     // Footer year
     els.year.textContent = new Date().getFullYear();
 
     // Init
-    function populateUpazilaSelects() {
-      // already defined above; this re-definition avoided (kept for clarity)
-    }
-    // ensure select options are filled before rendering
-    (function init() {
-      // Fill selects
-      UPAZILAS.forEach(u => {
-        const o = document.createElement("option");
-        o.value = u; o.textContent = u;
-        els.upazilaFilter.appendChild(o);
-      });
-      UPAZILAS.forEach(u => {
-        const o = document.createElement("option");
-        o.value = u; o.textContent = u;
-        els.fUpazila.appendChild(o);
-      });
-
-      loadData();
-      renderAll();
-    })();
+    fillUpazilaSelects();
+    loadData();
+    renderAll();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98236ea98527d058',t:'MTc1ODM5MzQyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9823b1f814cf71f4',t:'MTc1ODM5NjE4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
