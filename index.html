@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kurigramians Star — Achievers of Kurigram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: 242 85% 58%;  /* Vibrant orange */
+      --ink: 223 20% 16%;
+      --muted: 223 14% 34%;
+      --card: 0 0% 100%;
+      --bg: 230 60% 98%;
+      --accent: 203 92% 75%;
+      --pill: 223 100% 97%;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      color: hsl(var(--ink));
+      background: radial-gradient(1000px 600px at 90% -10%, hsl(var(--accent)/0.25), transparent 60%), 
+                  radial-gradient(900px 500px at -10% 10%, hsl(var(--brand)/0.25), transparent 60%),
+                  hsl(var(--bg));
+    }
+    .glass {
+      backdrop-filter: blur(10px);
+      background: hsl(0 0% 100% / 0.65);
+    }
+    .brand-gradient {
+      background-image: linear-gradient(135deg, hsl(var(--brand)), #f97316 40%, #22d3ee);
+    }
+    .ring-focus:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px hsl(var(--accent)/0.45);
+    }
+    .pill {
+      background: hsl(var(--pill));
+      border: 1px solid hsl(223 20% 90%);
+    }
+    .shadow-soft {
+      box-shadow: 0 5px 30px hsl(223 40% 40% / 0.12);
+    }
+    .shadow-card {
+      box-shadow: 0 10px 30px hsl(223 40% 20% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.7);
+    }
+    .fade-in { animation: fade 0.35s ease both; }
+    @keyframes fade { from {opacity: 0; transform: translateY(6px);} to {opacity: 1; transform: translateY(0);} }
+    .grid-auto-fill { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .tag {
+      transition: transform .08s ease, background-color .2s ease;
+    }
+    .tag:active { transform: scale(0.98); }
+    .chip-selected {
+      background: hsl(var(--brand)/0.08);
+      color: hsl(var(--brand));
+      border-color: hsl(var(--brand)/0.4);
+    }
+    .divider {
+      background: linear-gradient(90deg, transparent, hsl(223 20% 90%), transparent);
+      height: 1px;
+    }
+    .tooltip {
+      position: relative;
+    }
+    .tooltip:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      top: -36px;
+      right: 0;
+      white-space: nowrap;
+      background: hsl(223 20% 10%);
+      color: white;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px hsl(223 40% 10% / 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Header / Hero -->
+  <header class="relative">
+    <div class="absolute inset-0 brand-gradient opacity-10 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-16 pb-10">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-8">
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 pill px-3 py-1.5 text-xs text-slate-600 mb-4 shadow-soft">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            Kurigram District — 9 Upazilas
+          </div>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
+            Kurigramians Star
+          </h1>
+          <p class="mt-3 md:mt-4 text-slate-600 md:text-lg max-w-2xl">
+            Celebrate the achievements of the people of Kurigram. Submit your success and discover achievers from all 9 upazilas.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="openFormBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold shadow-soft ring-focus brand-gradient hover:opacity-95 active:opacity-90">
+              <span>Submit an Achiever</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <a href="#directory" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-slate-700 bg-white hover:bg-slate-50 active:bg-slate-100 shadow-soft ring-focus">
+              Browse Achievers
+            </a>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2 text-sm text-slate-600">
+            <span class="pill px-3 py-1">BCS Cadre</span>
+            <span class="pill px-3 py-1">Teachers</span>
+            <span class="pill px-3 py-1">Govt Jobs</span>
+            <span class="pill px-3 py-1">Respected Roles</span>
+          </div>
+        </div>
+        <div class="flex-1">
+          <!-- Decorative / Upazila ring -->
+          <div class="relative rounded-3xl p-6 md:p-8 glass shadow-soft overflow-hidden">
+            <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full brand-gradient opacity-30 blur-2xl"></div>
+            <div class="relative">
+              <h3 class="text-lg md:text-xl font-bold mb-3">The 9 Upazilas</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <!-- Each pill toggles filter -->
+                <button data-upazila="Kurigram Sadar" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Kurigram Sadar</button>
+                <button data-upazila="Rajarhat" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Rajarhat</button>
+                <button data-upazila="Chilmari" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Chilmari</button>
+                <button data-upazila="Ulipur" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Ulipur</button>
+                <button data-upazila="Nageshwari" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Nageshwari</button>
+                <button data-upazila="Char Rajibpur" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Char Rajibpur</button>
+                <button data-upazila="Bhurungamari" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Bhurungamari</button>
+                <button data-upazila="Phulbari" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Phulbari</button>
+                <button data-upazila="Rowmari" class="tag pill px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">Rowmari</button>
+              </div>
+              <p class="mt-4 text-sm text-slate-600">Tap any upazila to filter the directory below.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Controls + Directory -->
+  <main id="directory" class="max-w-7xl mx-auto px-4 md:px-8 pb-24">
+    <!-- Filters -->
+    <section class="rounded-3xl p-5 md:p-6 bg-white shadow-card border border-slate-100 fade-in">
+      <div class="flex flex-col lg:flex-row lg:items-end gap-4">
+        <div class="flex-1">
+          <label class="block text-sm font-semibold mb-2 text-slate-700">Search</label>
+          <div class="flex items-center gap-3 pill px-3 py-2 focus-within:ring-2 focus-within:ring-cyan-300">
+            <svg width="18" height="18" viewBox="0 0 24 24" class="text-slate-500"><path d="M11 19a8 8 0 1 1 5.293-14.293A8 8 0 0 1 11 19Zm10 2-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input id="searchInput" type="text" placeholder="Name, job type, location..." class="w-full bg-transparent outline-none text-slate-700 placeholder-slate-400">
+          </div>
+        </div>
+        <div class="w-full lg:w-64">
+          <label class="block text-sm font-semibold mb-2 text-slate-700">Upazila</label>
+          <select id="upazilaFilter" class="w-full pill px-3 py-2 ring-focus text-slate-700">
+            <option value="">All Upazilas</option>
+          </select>
+        </div>
+        <div class="w-full lg:w-56">
+          <label class="block text-sm font-semibold mb-2 text-slate-700">Sort by</label>
+          <select id="sortSelect" class="w-full pill px-3 py-2 ring-focus text-slate-700">
+            <option value="newest">Newest first</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="upazila">Upazila (A–Z)</option>
+          </select>
+        </div>
+        <div class="flex gap-3">
+          <button id="clearFilters" class="px-4 py-2 rounded-xl font-semibold text-slate-700 bg-white hover:bg-slate-50 shadow-soft ring-focus">Clear</button>
+          <button id="openFormBtn2" class="px-4 py-2 rounded-xl font-semibold text-white brand-gradient hover:opacity-95 ring-focus">Add Achiever</button>
+        </div>
+      </div>
+
+      <div class="divider my-6"></div>
+
+      <!-- Active chips -->
+      <div id="activeChips" class="flex flex-wrap gap-2"></div>
+    </section>
+
+    <!-- Summary -->
+    <section class="mt-6 grid md:grid-cols-3 gap-4">
+      <div class="glass rounded-2xl p-5 shadow-soft">
+        <div class="text-sm text-slate-600">Total Achievers</div>
+        <div id="statTotal" class="mt-1 text-2xl font-extrabold">0</div>
+      </div>
+      <div class="glass rounded-2xl p-5 shadow-soft">
+        <div class="text-sm text-slate-600">Upazilas Represented</div>
+        <div id="statUpazilas" class="mt-1 text-2xl font-extrabold">0</div>
+      </div>
+      <div class="glass rounded-2xl p-5 shadow-soft">
+        <div class="text-sm text-slate-600">Most Recent</div>
+        <div id="statRecent" class="mt-1 text-2xl font-extrabold">—</div>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section id="cardsSection" class="mt-6 rounded-3xl p-4 md:p-6 bg-white shadow-card border border-slate-100">
+      <div id="cardsGrid" class="grid grid-auto-fill gap-4"></div>
+      <div id="emptyState" class="hidden text-center py-14">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-50 text-slate-400 mx-auto mb-4">
+          <svg width="28" height="28" viewBox="0 0 24 24"><path d="M20 20L16 16M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p class="text-slate-600 font-semibold">No achievers found</p>
+        <p class="text-slate-500 text-sm mt-1">Try adjusting your filters or add a new achiever.</p>
+        <button id="emptyAddBtn" class="mt-5 px-4 py-2 rounded-xl font-semibold text-white brand-gradient hover:opacity-95 ring-focus">Submit an Achiever</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Submit Achiever -->
+  <div id="formModal" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="absolute inset-0 bg-slate-900/50"></div>
+    <div class="relative w-full max-w-2xl mx-4">
+      <div class="bg-white rounded-3xl shadow-card border border-slate-100 overflow-hidden">
+        <div class="px-6 py-5 flex items-start justify-between">
+          <div>
+            <h3 class="text-xl font-extrabold">Submit an Achiever</h3>
+            <p class="text-slate-600 text-sm mt-1">Share success to inspire Kurigram.</p>
+          </div>
+          <button id="closeFormBtn" class="p-2 rounded-lg hover:bg-slate-50 text-slate-500 ring-focus" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <div class="divider"></div>
+        <form id="achieverForm" class="px-6 py-6 space-y-5">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Full Name<span class="text-red-500">*</span></label>
+              <input id="fName" type="text" required placeholder="e.g., Ayesha Rahman" class="w-full pill px-3 py-2 ring-focus">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Upazila<span class="text-red-500">*</span></label>
+              <select id="fUpazila" required class="w-full pill px-3 py-2 ring-focus"></select>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Job Type<span class="text-red-500">*</span></label>
+              <input id="fJobType" type="text" required placeholder="e.g., BCS Cadre, Teacher, Govt Officer" class="w-full pill px-3 py-2 ring-focus">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Job Location<span class="text-red-500">*</span></label>
+              <input id="fJobLocation" type="text" required placeholder="e.g., Dhaka, Kurigram Sadar" class="w-full pill px-3 py-2 ring-focus">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Organization (optional)</label>
+              <input id="fOrg" type="text" placeholder="e.g., Ministry of Education" class="w-full pill px-3 py-2 ring-focus">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Year (optional)</label>
+              <input id="fYear" type="number" min="1950" max="2100" placeholder="e.g., 2024" class="w-full pill px-3 py-2 ring-focus">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-2">Contact Details<span class="text-red-500">*</span></label>
+            <input id="fContact" type="text" required placeholder="Email or phone" class="w-full pill px-3 py-2 ring-focus">
+            <p class="text-xs text-slate-500 mt-2">Note: Contact details are displayed publicly. Share only what you’re comfortable sharing.</p>
+          </div>
+
+          <div class="flex items-center justify-between gap-3 pt-2">
+            <div class="text-xs text-slate-500">Fields marked * are required</div>
+            <div class="flex gap-3">
+              <button type="button" id="cancelFormBtn" class="px-4 py-2 rounded-xl font-semibold text-slate-700 bg-white hover:bg-slate-50 shadow-soft ring-focus">Cancel</button>
+              <button type="submit" class="px-5 py-2.5 rounded-xl font-semibold text-white brand-gradient hover:opacity-95 ring-focus">Add Achiever</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden">
+    <div class="px-4 py-3 rounded-xl text-white font-semibold shadow-soft brand-gradient">Achiever added successfully!</div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="rounded-3xl p-8 md:p-10 glass shadow-soft">
+        <blockquote class="text-center text-lg md:text-xl font-semibold text-slate-800">
+          “Work hard, shine yourself, shine the name of Kurigramians... Proud to be a Kurigramian.”
+        </blockquote>
+      </div>
+      <div class="py-8 text-center text-slate-500 text-sm">
+        © <span id="year"></span> Kurigramians Star — Built with love for the people of Kurigram.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Data and state
+    const UPAZILAS = [
+      "Kurigram Sadar","Rajarhat","Chilmari","Ulipur","Nageshwari",
+      "Char Rajibpur","Bhurungamari","Phulbari","Rowmari"
+    ];
+
+    const els = {
+      upazilaFilter: document.getElementById("upazilaFilter"),
+      searchInput: document.getElementById("searchInput"),
+      sortSelect: document.getElementById("sortSelect"),
+      clearFilters: document.getElementById("clearFilters"),
+      cardsGrid: document.getElementById("cardsGrid"),
+      emptyState: document.getElementById("emptyState"),
+      activeChips: document.getElementById("activeChips"),
+      statTotal: document.getElementById("statTotal"),
+      statUpazilas: document.getElementById("statUpazilas"),
+      statRecent: document.getElementById("statRecent"),
+      openFormBtn: document.getElementById("openFormBtn"),
+      openFormBtn2: document.getElementById("openFormBtn2"),
+      emptyAddBtn: document.getElementById("emptyAddBtn"),
+      formModal: document.getElementById("formModal"),
+      closeFormBtn: document.getElementById("closeFormBtn"),
+      cancelFormBtn: document.getElementById("cancelFormBtn"),
+      achieverForm: document.getElementById("achieverForm"),
+      fName: document.getElementById("fName"),
+      fUpazila: document.getElementById("fUpazila"),
+      fJobType: document.getElementById("fJobType"),
+      fJobLocation: document.getElementById("fJobLocation"),
+      fOrg: document.getElementById("fOrg"),
+      fYear: document.getElementById("fYear"),
+      fContact: document.getElementById("fContact"),
+      toast: document.getElementById("toast"),
+      year: document.getElementById("year"),
+    };
+
+    // Seed sample data (small as default)
+    const SAMPLE = [
+      { id: cryptoRandomId(), name: "Ayesha Rahman", upazila: "Kurigram Sadar", jobType: "BCS Cadre (Admin)", jobLocation: "Dhaka", org: "Bangladesh Administrative Service", year: 2023, contact: "ayesha@example.com", createdAt: Date.now()-1000*60*60*24*5 },
+      { id: cryptoRandomId(), name: "Mizanur Islam", upazila: "Ulipur", jobType: "Govt Primary Teacher", jobLocation: "Ulipur", org: "DPE", year: 2022, contact: "017XXXXXXXX", createdAt: Date.now()-1000*60*60*24*20 },
+      { id: cryptoRandomId(), name: "Sharmin Akter", upazila: "Nageshwari", jobType: "BCS Health", jobLocation: "Rangpur", org: "DGHS", year: 2024, contact: "sharmin@health.gov.bd", createdAt: Date.now()-1000*60*60*24*1 },
+      { id: cryptoRandomId(), name: "Jahid Hasan", upazila: "Chilmari", jobType: "SO, Govt Bank", jobLocation: "Kurigram", org: "Sonali Bank", year: 2021, contact: "jahid.bank@example.com", createdAt: Date.now()-1000*60*60*24*40 },
+      { id: cryptoRandomId(), name: "Farzana Sultana", upazila: "Bhurungamari", jobType: "Lecturer", jobLocation: "Dinajpur", org: "Govt College", year: 2023, contact: "farzana.edu@example.com", createdAt: Date.now()-1000*60*60*24*12 },
+      { id: cryptoRandomId(), name: "Rakibul Islam", upazila: "Rowmari", jobType: "Engineer (PWD)", jobLocation: "Kurigram Sadar", org: "Public Works", year: 2022, contact: "rakib.pwd@example.com", createdAt: Date.now()-1000*60*60*24*3 },
+    ];
+
+    function cryptoRandomId() {
+      // Short unique id
+      return "id-" + Math.random().toString(36).slice(2, 8) + "-" + Date.now().toString(36).slice(-4);
+    }
+
+    const STORAGE_KEY = "kurigramians_star_v1";
+    let achievers = [];
+
+    function loadData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          achievers = Array.isArray(parsed) ? parsed : [];
+        } catch { achievers = []; }
+      }
+      if (!achievers.length) {
+        achievers = SAMPLE;
+        saveData();
+      }
+    }
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(achievers));
+    }
+
+    // UI helpers
+    function openModal() {
+      els.formModal.classList.remove("hidden");
+      els.formModal.classList.add("flex");
+      // Prefill upazila if filtered
+      els.fUpazila.value = els.upazilaFilter.value || "";
+      setTimeout(() => els.fName.focus(), 10);
+    }
+    function closeModal() {
+      els.formModal.classList.add("hidden");
+      els.formModal.classList.remove("flex");
+      els.achieverForm.reset();
+    }
+    function toast(msg="Achiever added successfully!") {
+      els.toast.firstElementChild.textContent = msg;
+      els.toast.classList.remove("hidden");
+      setTimeout(()=> els.toast.classList.add("hidden"), 2000);
+    }
+
+    // Populate selects
+    function populateUpazilaSelects() {
+      UPAZILAS.forEach(u => {
+        const o = document.createElement("option");
+        o.value = u; o.textContent = u;
+        els.upazilaFilter.appendChild(o);
+      });
+      UPAZILAS.forEach(u => {
+        const o = document.createElement("option");
+        o.value = u; o.textContent = u;
+        els.fUpazila.appendChild(o);
+      });
+    }
+
+    // Filtering & sorting
+    const state = {
+      query: "",
+      upazila: "",
+      sort: "newest",
+      tagUpazilas: new Set(), // from header pills
+    };
+
+    function getActiveUpazilaFilter() {
+      // If any tag selected, they take priority (multi-select)
+      if (state.tagUpazilas.size) return Array.from(state.tagUpazilas);
+      // Else fallback to dropdown (single)
+      return state.upazila ? [state.upazila] : [];
+    }
+
+    function filterAndSort() {
+      const q = state.query.trim().toLowerCase();
+      const upa = getActiveUpazilaFilter();
+      let list = achievers.filter(a => {
+        const matchQ = !q || [a.name, a.jobType, a.jobLocation, a.org || "", a.upazila].join(" ").toLowerCase().includes(q);
+        const matchU = !upa.length || upa.includes(a.upazila);
+        return matchQ && matchU;
+      });
+      if (state.sort === "newest") {
+        list.sort((a,b)=> (b.createdAt||0) - (a.createdAt||0));
+      } else if (state.sort === "name") {
+        list.sort((a,b)=> a.name.localeCompare(b.name));
+      } else if (state.sort === "upazila") {
+        list.sort((a,b)=> a.upazila.localeCompare(b.upazila) || a.name.localeCompare(b.name));
+      }
+      return list;
+    }
+
+    // Render chips and stats
+    function renderChips() {
+      els.activeChips.innerHTML = "";
+
+      if (state.query) addChip(`Search: “${state.query}”`, () => { state.query=""; els.searchInput.value=""; renderAll(); });
+
+      // Dropdown upazila chip (only when no tag selection)
+      if (!state.tagUpazilas.size && state.upazila) {
+        addChip(state.upazila, () => { state.upazila=""; els.upazilaFilter.value=""; renderAll(); });
+      }
+
+      // Tag chips (multi)
+      state.tagUpazilas.forEach(u => addChip(u, () => { state.tagUpazilas.delete(u); setHeaderPill(u,false); renderAll(); }));
+
+      if (!state.query && !state.upazila && !state.tagUpazilas.size) {
+        const hint = document.createElement("div");
+        hint.className = "text-slate-500 text-sm";
+        hint.textContent = "Tip: Use search or pick upazilas to filter.";
+        els.activeChips.appendChild(hint);
+      }
+
+      function addChip(text, onRemove) {
+        const chip = document.createElement("div");
+        chip.className = "flex items-center gap-2 pill px-3 py-1.5 text-sm";
+        const t = document.createElement("span");
+        t.textContent = text;
+        const b = document.createElement("button");
+        b.className = "p-1 rounded-md hover:bg-slate-100";
+        b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        b.addEventListener("click", onRemove);
+        chip.appendChild(t); chip.appendChild(b);
+        els.activeChips.appendChild(chip);
+      }
+    }
+
+    function renderStats(list) {
+      els.statTotal.textContent = achievers.length.toString();
+      els.statUpazilas.textContent = new Set(achievers.map(a=>a.upazila)).size.toString();
+      if (list.length) {
+        const recent = list.slice().sort((a,b)=> (b.createdAt||0)-(a.createdAt||0))[0];
+        const d = new Date(recent.createdAt || Date.now());
+        els.statRecent.textContent = `${recent.name} — ${d.toLocaleDateString()}`;
+      } else {
+        els.statRecent.textContent = "—";
+      }
+    }
+
+    // Render cards
+    function renderCards(list) {
+      // Selective update: diff by ids would be overkill here; we simply rebuild the grid cleanly.
+      els.cardsGrid.innerHTML = "";
+      if (!list.length) {
+        els.emptyState.classList.remove("hidden");
+        return;
+      }
+      els.emptyState.classList.add("hidden");
+
+      list.forEach(a => {
+        const card = document.createElement("article");
+        card.className = "rounded-2xl border border-slate-100 bg-white shadow-soft p-5 fade-in hover:shadow-card transition-shadow";
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-400 to-cyan-300 text-white flex items-center justify-center font-extrabold shadow-soft">
+                ${initials(a.name)}
+              </div>
+              <div>
+                <h4 class="font-extrabold text-slate-800">${escapeHtml(a.name)}</h4>
+                <div class="text-slate-500 text-sm">${escapeHtml(a.upazila)}</div>
+              </div>
+            </div>
+            <span class="text-xs px-2 py-1 rounded-full chip-selected border">${escapeHtml(a.jobType)}</span>
+          </div>
+          <div class="mt-4 space-y-2 text-sm">
+            <div class="flex items-center gap-2 text-slate-700">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l7 6v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8l7-6Z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>${escapeHtml(a.jobLocation)}</span>
+            </div>
+            ${a.org ? `<div class="flex items-center gap-2 text-slate-700">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-4 7 4v12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>${escapeHtml(a.org)}</span>
+            </div>` : ""}
+            <div class="flex items-center gap-2 text-slate-700">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 4v4m8-4v4M4 10h16" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>${a.year ? escapeHtml(String(a.year)) : "Year not specified"}</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-700">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M22 16.92v2a2 2 0 0 1-2.18 2A19.73 19.73 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h2a2 2 0 0 1 2 1.72 12.66 12.66 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 5 5l1.27-1.27a2 2 0 0 1 2.11-.45 12.66 12.66 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <span>${escapeHtml(a.contact)}</span>
+              <button class="tooltip ml-auto text-slate-500 hover:text-slate-700" data-tip="Copy contact" aria-label="Copy" data-copy="${escapeHtmlAttr(a.contact)}">
+                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M9 9h10v10H9zM5 5h10v10H5z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="text-xs text-slate-500">Added ${new Date(a.createdAt||Date.now()).toLocaleDateString()}</div>
+            <div class="flex gap-2">
+              <button class="px-3 py-1.5 text-xs rounded-lg pill hover:bg-slate-50 filterUpa" data-up="${escapeHtmlAttr(a.upazila)}">View ${escapeHtml(a.upazila)}</button>
+              <button class="px-3 py-1.5 text-xs rounded-lg pill hover:bg-slate-50 filterType" data-type="${escapeHtmlAttr(a.jobType)}">Similar roles</button>
+            </div>
+          </div>
+        `;
+        els.cardsGrid.appendChild(card);
+      });
+
+      // Wire per-card actions
+      els.cardsGrid.querySelectorAll("[data-copy]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const text = btn.getAttribute("data-copy");
+          copyText(text);
+          toast("Contact copied!");
+        });
+      });
+      els.cardsGrid.querySelectorAll(".filterUpa").forEach(b=>{
+        b.addEventListener("click", ()=>{
+          // Prioritize tags (multi-select): clear others and select this one
+          clearTagSelection();
+          const u = b.getAttribute("data-up");
+          toggleHeaderPill(u, true);
+          renderAll();
+          window.location.hash = "#directory";
+        });
+      });
+      els.cardsGrid.querySelectorAll(".filterType").forEach(b=>{
+        b.addEventListener("click", ()=>{
+          const t = b.getAttribute("data-type");
+          els.searchInput.value = t;
+          state.query = t;
+          renderAll();
+          window.location.hash = "#directory";
+        });
+      });
+    }
+
+    // Header upazila pills multi-select
+    const headerPills = Array.from(document.querySelectorAll('button[data-upazila]'));
+    headerPills.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const u = btn.getAttribute("data-upazila");
+        const willSelect = !state.tagUpazilas.has(u);
+        toggleHeaderPill(u, willSelect);
+        // Clear dropdown selection when tags in use
+        if (state.tagUpazilas.size) {
+          state.upazila = "";
+          els.upazilaFilter.value = "";
+        }
+        renderAll();
+      });
+    });
+    function toggleHeaderPill(u, select) {
+      if (select) {
+        state.tagUpazilas.add(u);
+        setHeaderPill(u, true);
+      } else {
+        state.tagUpazilas.delete(u);
+        setHeaderPill(u, false);
+      }
+    }
+    function setHeaderPill(u, active) {
+      const btn = headerPills.find(b => b.getAttribute("data-upazila") === u);
+      if (!btn) return;
+      btn.classList.toggle("chip-selected", !!active);
+      btn.classList.toggle("border", !!active);
+    }
+    function clearTagSelection() {
+      state.tagUpazilas.forEach(u => setHeaderPill(u, false));
+      state.tagUpazilas.clear();
+    }
+
+    // Event bindings
+    els.searchInput.addEventListener("input", (e)=> { state.query = e.target.value; renderAll(); });
+    els.upazilaFilter.addEventListener("change", (e)=> {
+      // If any tag selected, dropdown does not override
+      if (state.tagUpazilas.size) {
+        e.target.value = "";
+        return;
+      }
+      state.upazila = e.target.value;
+      renderAll();
+    });
+    els.sortSelect.addEventListener("change", (e)=> { state.sort = e.target.value; renderAll(); });
+    els.clearFilters.addEventListener("click", ()=> {
+      state.query=""; state.upazila=""; state.sort="newest"; clearTagSelection();
+      els.searchInput.value=""; els.upazilaFilter.value=""; els.sortSelect.value="newest";
+      renderAll();
+    });
+
+    // Modal handlers
+    [els.openFormBtn, els.openFormBtn2, els.emptyAddBtn].forEach(b => b.addEventListener("click", openModal));
+    [els.closeFormBtn, els.cancelFormBtn].forEach(b => b.addEventListener("click", closeModal));
+    els.formModal.addEventListener("click", (e)=> { if (e.target === els.formModal) closeModal(); });
+
+    // Form submit
+    els.achieverForm.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const name = els.fName.value.trim();
+      const upazila = els.fUpazila.value.trim();
+      const jobType = els.fJobType.value.trim();
+      const jobLocation = els.fJobLocation.value.trim();
+      const org = els.fOrg.value.trim();
+      const year = els.fYear.value ? Number(els.fYear.value) : null;
+      const contact = els.fContact.value.trim();
+
+      if (!name || !upazila || !jobType || !jobLocation || !contact) {
+        toast("Please fill all required fields.");
+        return;
+      }
+
+      const newItem = {
+        id: cryptoRandomId(),
+        name, upazila, jobType, jobLocation,
+        org: org || null,
+        year: year || null,
+        contact,
+        createdAt: Date.now()
+      };
+      achievers.push(newItem);
+      saveData();
+      closeModal();
+      toast("Achiever added successfully!");
+      renderAll();
+      // Focus search on their name so they can see it quickly
+      els.searchInput.value = name;
+      state.query = name;
+      renderAll();
+      window.location.hash = "#directory";
+    });
+
+    // Copy helper
+    function copyText(text) {
+      // Use clipboard if available, otherwise fallback
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(()=>{});
+      } else {
+        const t = document.createElement("textarea");
+        t.value = text; document.body.appendChild(t);
+        t.select(); try { document.execCommand("copy"); } catch {}
+        document.body.removeChild(t);
+      }
+    }
+
+    // Render orchestrator
+    function renderAll() {
+      const list = filterAndSort();
+      renderChips();
+      renderCards(list);
+      renderStats(list);
+    }
+
+    // Utilities
+    function initials(name) {
+      return name.split(" ").slice(0,2).map(s=>s[0]?.toUpperCase() || "").join("");
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+    function escapeHtmlAttr(s) {
+      return escapeHtml(s).replace(/"/g, '&quot;');
+    }
+
+    // Footer year
+    els.year.textContent = new Date().getFullYear();
+
+    // Init
+    populateUpazilaSelects();
+    loadData();
+    renderAll();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9821d2a1f7cef257',t:'MTc1ODM3NjU1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
