@@ -331,16 +331,6 @@
       year: document.getElementById("year"),
     };
 
-    
-
-    function cryptoRandomId() {
-      // Short unique id
-      return "id-" + Math.random().toString(36).slice(2, 8) + "-" + Date.now().toString(36).slice(-4);
-    }
-
-    const STORAGE_KEY = "kurigramians_star_v1";
-    let achievers = [];
-
     function loadData() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
@@ -694,4 +684,5 @@
   </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9821d2a1f7cef257',t:'MTc1ODM3NjU1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
